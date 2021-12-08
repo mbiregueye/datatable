@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<title>Datatable Product</title>
+
+<head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+    <!-- scripts -->
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="assets/css/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/r/dt/dt-1.10.9/datatables.min.js"></script>
+    <script type="text/javascript" charset="utf8"
+        src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class <div class="header">
+            <h2>DataTable demo in Php,Mysql and Ajax </h2>
+        </div>
+        <div class="container">
+            <table id="product-grid" class="table table-striped table-bordered" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Min Stock</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</body>
+<script>
+    $(document).ready(function () {
+        var dataTable = $('#product-grid').DataTable({
+            "responsive": true,
+            "processing": true,
+            "serverSide": true,
+            "ajax": {
+                url: "dataResponse.php", // json datasource
+                data: { action: 'getProducts' },
+                type: 'post',  // method  , by default get
+            },
+            error: function () {  // error handling
+                $(".product-grid-error").html("");
+                $("#product-grid").append('<tbody class="product-grid-error"><tr><th colspan="3">No data found in the server</th></tr></tbody>');
+                $("#product-grid_processing").css("display", "none");
+            }
+        });
+    });
+</script>
+</html>
