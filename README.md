@@ -5,4 +5,7 @@ With this method that I propose you can optimize the loading of these data and g
 
 With technologies such as:
 Mysql, PHP, Jquery(Ajax)
+
+Nb: Go to the master branch to retrieve the project.
+
 Gooooood
