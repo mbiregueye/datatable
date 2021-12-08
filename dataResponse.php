@@ -5,10 +5,10 @@ include 'configDB.php';
 if (isset($_POST['action']) && !empty($_POST['action'])) {
     $action = $_POST['action'];
     switch ($action) {
-        case 'getProducts' :
+        case 'getProducts':
             getAllProduct($DBconnect);
             break;
-        /*case 'getProd' :
+            /*case 'getProd' :
             getProducts($DBconnect);
             break;*/
     }
@@ -16,16 +16,16 @@ if (isset($_POST['action']) && !empty($_POST['action'])) {
 
 function getAllProduct($DBconnect)
 {
-// storing  request (ie, get/post) global array to a variable
+    // storing  request (ie, get/post) global array to a variable
     $requestData = $_REQUEST;
     $columns = array(
-// datatable column index  => database column name
+        // datatable column index  => database column name
         0 => 'id',
         1 => 'product_name',
         2 => 'price',
         3 => 'minStock'
     );
-// getting total number records without any search
+    // getting total number records without any search
     $sql = "SELECT id, product_name, price, minStock ";
     $sql .= " FROM product";
     $query = mysqli_query($DBconnect, $sql) or die("MysqlError lors de la recupertion des produits 1 : allproducts");
@@ -61,8 +61,4 @@ function getAllProduct($DBconnect)
         "data" => $data   // total data array
     );
     echo json_encode($json_data);  // send data as json format
-
-
 }
-
-
